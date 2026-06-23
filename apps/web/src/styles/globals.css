@@ -1399,11 +1399,13 @@ body,
 .footer-logo {
   width: 78px;
   height: 78px;
-  border-radius: 22px;
+  border-radius: 50%;
   object-fit: cover;
+  display: block;
+  flex-shrink: 0;
+  background: #080604;
   border: 1px solid rgba(246, 213, 141, 0.42);
   box-shadow: 0 14px 34px rgba(216, 170, 88, 0.18);
-  background: #080604;
 }
 
 .footer-brand h2 {
@@ -1422,11 +1424,11 @@ body,
     align-items: flex-start;
   }
 
-  .footer-logo {
+  /* .footer-logo {
     width: 64px;
     height: 64px;
     border-radius: 18px;
-  }
+  } */
 }
 .footer-links {
   display: flex;
@@ -1504,16 +1506,6 @@ body,
   display: flex;
   align-items: center;
   gap: 18px;
-}
-
-.footer-logo {
-  width: 78px;
-  height: 78px;
-  border-radius: 22px;
-  object-fit: cover;
-  border: 1px solid rgba(246, 213, 141, 0.42);
-  box-shadow: 0 14px 34px rgba(216, 170, 88, 0.18);
-  background: #080604;
 }
 
 .footer-brand h2 {
@@ -2704,13 +2696,7 @@ body,
   padding: 0 17px;
 
   color: #1a1208;
-  background:
-    linear-gradient(
-      135deg,
-      #ffe6a3 0%,
-      #f3c866 48%,
-      #dca744 100%
-    );
+  background: linear-gradient(135deg, #ffe6a3 0%, #f3c866 48%, #dca744 100%);
 
   border: 1px solid rgba(255, 230, 163, 0.75);
   border-radius: 11px;
@@ -2786,12 +2772,7 @@ body,
 }
 
 .admin-page .reservation-reload.is-loading {
-  background:
-    linear-gradient(
-      135deg,
-      #d9b662,
-      #b98a36
-    );
+  background: linear-gradient(135deg, #d9b662, #b98a36);
 }
 
 .admin-page .is-spinning {
@@ -2824,4 +2805,392 @@ body,
     width: 100%;
   }
 }
+/* =====================================================
+KHÔNG GIAN ỐC NGUYỄN
+===================================================== */
 
+.space-section {
+  position: relative;
+  overflow: hidden;
+}
+
+.space-section::before {
+  content: "";
+  position: absolute;
+  top: 110px;
+  left: 50%;
+  width: 720px;
+  height: 360px;
+  pointer-events: none;
+  background: rgba(216, 170, 88, 0.08);
+  filter: blur(130px);
+  transform: translateX(-50%);
+}
+
+.space-section > * {
+  position: relative;
+  z-index: 1;
+}
+
+.space-grid {
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  gap: 26px;
+  margin-top: 34px;
+}
+
+.space-card {
+  position: relative;
+  overflow: hidden;
+  border: 1px solid var(--border);
+  border-radius: 34px;
+  background:
+    linear-gradient(
+      180deg,
+      rgba(255, 255, 255, 0.065),
+      rgba(255, 255, 255, 0.025)
+    ),
+    rgba(12, 9, 7, 0.9);
+  box-shadow: 0 24px 70px rgba(0, 0, 0, 0.22);
+  transition:
+    transform 0.3s ease,
+    border-color 0.3s ease,
+    box-shadow 0.3s ease;
+}
+
+.space-card {
+  transform: translateY(-8px);
+  border-color: rgba(216, 170, 88, 0.48);
+  box-shadow: 0 32px 90px rgba(0, 0, 0, 0.36);
+}
+
+.space-card-vip {
+  border-color: rgba(244, 202, 110, 0.34);
+  background:
+    radial-gradient(
+      circle at top right,
+      rgba(216, 170, 88, 0.16),
+      transparent 42%
+    ),
+    linear-gradient(
+      180deg,
+      rgba(216, 170, 88, 0.09),
+      rgba(255, 255, 255, 0.025)
+    ),
+    rgba(12, 9, 7, 0.94);
+}
+
+.space-image-wrap {
+  position: relative;
+  height: 310px;
+  overflow: hidden;
+}
+
+.space-image-wrap::after {
+  content: "";
+  position: absolute;
+  inset: 0;
+  background: linear-gradient(
+    180deg,
+    transparent 42%,
+    rgba(9, 6, 4, 0.86) 100%
+  );
+}
+
+.space-image-wrap img {
+  width: 100%;
+  height: 100%;
+  display: block;
+  object-fit: cover;
+  transition: transform 0.55s ease;
+}
+
+.space-card .space-image-wrap img {
+  transform: scale(1.065);
+}
+
+.space-floor-badge {
+  position: absolute;
+  top: 20px;
+  left: 20px;
+  z-index: 2;
+  display: inline-flex;
+  align-items: center;
+  min-height: 36px;
+  padding: 8px 14px;
+  color: var(--cream);
+  background: rgba(12, 9, 7, 0.76);
+  border: 1px solid rgba(255, 255, 255, 0.14);
+  border-radius: 999px;
+  font-size: 12px;
+  font-weight: 900;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+  backdrop-filter: blur(12px);
+}
+
+.vip-badge {
+  color: #1a1208;
+  background: linear-gradient(135deg, var(--gold-light), var(--gold));
+  border-color: rgba(255, 229, 160, 0.7);
+}
+
+.space-card-body {
+  padding: 30px;
+}
+
+.space-type {
+  display: inline-flex;
+  align-items: center;
+  gap: 9px;
+  color: var(--gold-light);
+  font-size: 13px;
+  font-weight: 900;
+  letter-spacing: 0.12em;
+  text-transform: uppercase;
+}
+
+.space-type-vip {
+  color: #f5cf79;
+}
+
+.space-card h3 {
+  margin: 14px 0 13px;
+  color: var(--cream);
+  font-size: clamp(27px, 3vw, 35px);
+  line-height: 1.15;
+  letter-spacing: -0.8px;
+}
+
+.space-card-body > p {
+  min-height: 105px;
+  margin: 0;
+  color: var(--muted);
+  font-size: 16px;
+  line-height: 1.75;
+}
+
+.space-features {
+  display: grid;
+  gap: 12px;
+  margin: 24px 0 28px;
+  padding: 22px 0;
+  list-style: none;
+  border-top: 1px solid var(--border);
+  border-bottom: 1px solid var(--border);
+}
+
+.space-features li {
+  display: flex;
+  align-items: flex-start;
+  gap: 10px;
+  color: rgba(255, 247, 231, 0.86);
+  line-height: 1.5;
+}
+
+.space-features svg {
+  flex: 0 0 auto;
+  margin-top: 3px;
+  color: var(--gold-light);
+}
+
+.space-action {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 9px;
+  min-height: 46px;
+  padding: 0 20px;
+  color: #171008;
+  background: var(--gold-light);
+  border: 1px solid rgba(255, 230, 163, 0.7);
+  border-radius: 14px;
+  font-weight: 900;
+  text-decoration: none;
+  transition:
+    transform 0.2s ease,
+    filter 0.2s ease,
+    box-shadow 0.2s ease;
+}
+
+.space-action {
+  color: #171008;
+  transform: translateY(-2px);
+  filter: brightness(1.05);
+  box-shadow: 0 12px 30px rgba(216, 170, 88, 0.24);
+}
+
+.space-action-vip {
+  background: linear-gradient(135deg, #ffe6a3, #e8bb5d 55%, #c99131);
+}
+
+.space-note {
+  max-width: 760px;
+  margin: 28px auto 0;
+  color: var(--muted);
+  font-size: 14px;
+  line-height: 1.7;
+  text-align: center;
+}
+
+/* RESPONSIVE */
+
+@media (max-width: 900px) {
+  .space-grid {
+    grid-template-columns: 1fr;
+  }
+
+  .space-card-body > p {
+    min-height: auto;
+  }
+}
+
+@media (max-width: 600px) {
+  .space-grid {
+    gap: 18px;
+    margin-top: 24px;
+  }
+
+  .space-card {
+    border-radius: 26px;
+  }
+
+  .space-image-wrap {
+    height: 235px;
+  }
+
+  .space-card-body {
+    padding: 23px;
+  }
+
+  .space-card h3 {
+    font-size: 27px;
+  }
+
+  .space-action {
+    width: 100%;
+  }
+}
+/* =====================================================
+   FIX INPUT NGÀY GIỜ + DANH SÁCH ĐẶT MÓN TRƯỚC
+===================================================== */
+
+/* Làm biểu tượng lịch sáng, dễ nhìn và dễ bấm */
+.reservation-form input[type="datetime-local"] {
+  color-scheme: light;
+  padding-right: 48px;
+  cursor: pointer;
+}
+
+.reservation-form
+  input[type="datetime-local"]::-webkit-calendar-picker-indicator {
+  background-color: rgba(249, 245, 5, 0.678);
+  width: 22px;
+  height: 22px;
+  padding: 6px;
+  margin-right: 2px;
+  border-radius: 8px;
+  background-color: rgba(255, 211, 113, 0.14);
+  filter: invert(88%) sepia(48%) saturate(733%) hue-rotate(343deg)
+    brightness(104%) contrast(96%);
+  opacity: 1;
+  cursor: pointer;
+  transition:
+    background-color 0.2s ease,
+    transform 0.2s ease;
+}
+
+/* .reservation-form
+  input[type="datetime-local"]::-webkit-calendar-picker-indicator:hover {
+  background-color: rgba(255, 211, 113, 0.25);
+  transform: scale(1.08);
+} */
+
+/* Tách riêng tên món và giá tiền */
+.modal .menu-item {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 16px;
+  min-height: 68px;
+  padding: 12px 14px;
+}
+
+.modal .menu-info {
+  flex: 1;
+  min-width: 0;
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  gap: 5px;
+  padding-right: 8px;
+}
+
+.modal .menu-info strong {
+  display: block;
+  width: 100%;
+  color: #fff7e7;
+  font-size: 16px;
+  line-height: 1.35;
+  word-break: break-word;
+}
+
+.modal .menu-info span {
+  display: block;
+  color: #f5c96a;
+  font-size: 14px;
+  font-weight: 800;
+  line-height: 1.2;
+}
+
+.modal .qty {
+  flex: 0 0 auto;
+  display: flex;
+  align-items: center;
+  gap: 9px;
+}
+
+.modal .qty > span {
+  min-width: 20px;
+  color: #ffffff;
+  font-weight: 800;
+  text-align: center;
+}
+
+.modal .qty button {
+  flex: 0 0 auto;
+  width: 34px;
+  height: 34px;
+  padding: 0;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  border-radius: 8px;
+  font-size: 19px;
+  font-weight: 700;
+  cursor: pointer;
+}
+
+@media (max-width: 560px) {
+  .modal .menu-item {
+    gap: 10px;
+    padding: 11px;
+  }
+
+  .modal .menu-info strong {
+    font-size: 14px;
+  }
+
+  .modal .menu-info span {
+    font-size: 13px;
+  }
+
+  .modal .qty {
+    gap: 6px;
+  }
+
+  .modal .qty button {
+    width: 31px;
+    height: 31px;
+  }
+}
