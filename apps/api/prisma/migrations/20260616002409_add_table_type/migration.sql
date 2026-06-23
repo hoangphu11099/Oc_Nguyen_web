@@ -1,5 +1,5 @@
 -- AlterTable
-ALTER TABLE `reservation` ADD COLUMN `tableType` ENUM('NORMAL', 'VIP') NOT NULL DEFAULT 'NORMAL';
+ALTER TABLE `Reservation` ADD COLUMN `tableType` ENUM('NORMAL', 'VIP') NOT NULL DEFAULT 'NORMAL';
 
 -- CreateTable
 CREATE TABLE `Notification` (

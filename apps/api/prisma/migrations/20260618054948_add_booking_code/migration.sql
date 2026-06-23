@@ -5,7 +5,7 @@
 
 */
 -- AlterTable
-ALTER TABLE `reservation` ADD COLUMN `bookingCode` VARCHAR(191) NOT NULL DEFAULT 'TEMP';
+ALTER TABLE `Reservation` ADD COLUMN `bookingCode` VARCHAR(191) NOT NULL DEFAULT 'TEMP';
 
 -- CreateIndex
 CREATE UNIQUE INDEX `Reservation_bookingCode_key` ON `Reservation`(`bookingCode`);

@@ -1,11 +1,11 @@
 /*
   Warnings:
 
-  - You are about to drop the column `preOrders` on the `reservation` table. All the data in the column will be lost.
+  - You are about to drop the column `preOrders` on the `Reservation` table. All the data in the column will be lost.
 
 */
 -- AlterTable
-ALTER TABLE `reservation` DROP COLUMN `preOrders`;
+ALTER TABLE `Reservation` DROP COLUMN `preOrders`;
 
 -- CreateTable
 CREATE TABLE `ReservationItem` (

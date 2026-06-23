@@ -1,2 +1,2 @@
 -- AlterTable
-ALTER TABLE `reservation` MODIFY `bookingCode` VARCHAR(191) NULL;
+ALTER TABLE `Reservation` MODIFY `bookingCode` VARCHAR(191) NULL;
