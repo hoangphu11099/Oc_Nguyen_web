@@ -1,0 +1,112 @@
+generator client {
+  provider = "prisma-client-js"
+}
+
+datasource db {
+  provider = "mysql"
+  url      = env("DATABASE_URL")
+}
+
+enum UserRole {
+  USER
+  ADMIN
+}
+
+enum ReservationStatus {
+  PENDING
+  CONFIRMED
+  CANCELLED
+  DONE
+}
+
+enum NotificationType {
+  SYSTEM
+  RESERVATION
+  PROMOTION
+}
+
+enum TableType {
+  NORMAL
+  VIP
+}
+
+model User {
+  id           Int           @id @default(autoincrement())
+  email        String        @unique
+  name         String
+  passwordHash String
+  role         UserRole      @default(USER)
+  reservations Reservation[]
+  createdAt    DateTime      @default(now())
+  updatedAt    DateTime      @updatedAt
+}
+
+model MenuItem {
+  id               Int               @id @default(autoincrement())
+  name             String
+  description      String
+  price            Int
+  category         String
+  imageUrl         String?
+  isAvailable      Boolean           @default(true)
+  isSignature      Boolean           @default(false)
+  createdAt        DateTime          @default(now())
+  updatedAt        DateTime          @updatedAt
+
+  reservationItems ReservationItem[]
+}
+
+model Reservation {
+  id              Int               @id @default(autoincrement())
+  bookingCode String? @unique
+  customerName    String
+  phone           String
+  email           String?
+  numberOfGuests  Int
+  reservationDate DateTime
+  note            String?
+  status          ReservationStatus @default(PENDING)
+  tableType       TableType         @default(NORMAL)
+
+  userId Int?
+  user   User? @relation(fields: [userId], references: [id])
+
+  items ReservationItem[]
+
+  createdAt DateTime @default(now())
+  updatedAt DateTime @updatedAt
+}
+
+model Promotion {
+  id            Int      @id @default(autoincrement())
+  title         String
+  highlightText String?
+  description   String
+  imageUrl      String
+  ctaText       String?
+  ctaLink       String?
+  isActive      Boolean  @default(true)
+  createdAt     DateTime @default(now())
+  updatedAt     DateTime @updatedAt
+}
+
+model Notification {
+  id        Int              @id @default(autoincrement())
+  title     String
+  message   String
+  type      NotificationType @default(SYSTEM)
+  link      String?
+  isRead    Boolean          @default(false)
+  createdAt DateTime         @default(now())
+  updatedAt DateTime         @updatedAt
+}
+
+model ReservationItem {
+  id            Int @id @default(autoincrement())
+  reservationId Int
+  menuItemId    Int
+  quantity      Int
+
+  reservation Reservation @relation(fields: [reservationId], references: [id])
+  menuItem     MenuItem    @relation(fields: [menuItemId], references: [id])
+}

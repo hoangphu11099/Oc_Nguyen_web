@@ -1,0 +1,37 @@
+import { Injectable, NotFoundException } from '@nestjs/common';
+import { PrismaService } from '../prisma/prisma.service';
+import { CreateMenuItemDto } from './dto/create-menu-item.dto';
+import { UpdateMenuItemDto } from './dto/update-menu-item.dto';
+
+@Injectable()
+export class MenuService {
+  constructor(private readonly prisma: PrismaService) {}
+
+  findAll(category?: string) {
+    return this.prisma.menuItem.findMany({
+      where: category ? { category } : undefined,
+      orderBy: [{ isSignature: 'desc' }, { createdAt: 'desc' }],
+    });
+  }
+
+  async findOne(id: number) {
+    const item = await this.prisma.menuItem.findUnique({ where: { id } });
+    if (!item) throw new NotFoundException('Không tìm thấy món ăn');
+    return item;
+  }
+
+  create(dto: CreateMenuItemDto) {
+    return this.prisma.menuItem.create({ data: dto });
+  }
+
+  async update(id: number, dto: UpdateMenuItemDto) {
+    await this.findOne(id);
+    return this.prisma.menuItem.update({ where: { id }, data: dto });
+  }
+
+  async remove(id: number) {
+    await this.findOne(id);
+    await this.prisma.menuItem.delete({ where: { id } });
+    return { message: 'Đã xoá món ăn' };
+  }
+}
